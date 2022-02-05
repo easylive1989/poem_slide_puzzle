@@ -18,9 +18,26 @@ class _SlidePuzzleViewState extends State<SlidePuzzleView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: PuzzleView(
-        puzzle: widget.controller.displayPuzzle,
-        onMove: _onMove,
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          PuzzleView(
+            puzzle: widget.controller.displayPuzzle,
+            onMove: _onMove,
+          ),
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Text("You win!"),
+              const SizedBox(width: 10),
+              OutlinedButton(
+                onPressed: () {},
+                child: const Text("Retry"),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
