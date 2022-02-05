@@ -3,7 +3,7 @@ import 'package:poem_slide_puzzle/slide_puzzle_repository.dart';
 class SlidePuzzleService {
   final SlidePuzzleRepository _slidePuzzleRepository;
 
-  List<String> get puzzle => _slidePuzzleRepository.get();
+  List<String> get puzzle => _slidePuzzleRepository.getPuzzle();
 
   SlidePuzzleService(SlidePuzzleRepository slidePuzzleRepository)
       : _slidePuzzleRepository = slidePuzzleRepository;
@@ -61,4 +61,8 @@ class SlidePuzzleService {
   int _left(int index) => index - 1;
 
   int _right(int index) => index + 1;
+
+  bool isWin() {
+    return _slidePuzzleRepository.isWin();
+  }
 }

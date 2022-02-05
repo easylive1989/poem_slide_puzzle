@@ -19,4 +19,8 @@ class SlidePuzzleController {
   void move(String value) {
     _slidePuzzleService.move(value);
   }
+
+  bool isWin() {
+    return _slidePuzzleService.isWin();
+  }
 }

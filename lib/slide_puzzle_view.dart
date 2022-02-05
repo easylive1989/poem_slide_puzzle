@@ -26,17 +26,18 @@ class _SlidePuzzleViewState extends State<SlidePuzzleView> {
             puzzle: widget.controller.displayPuzzle,
             onMove: _onMove,
           ),
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Text("You win!"),
-              const SizedBox(width: 10),
-              OutlinedButton(
-                onPressed: () {},
-                child: const Text("Retry"),
-              ),
-            ],
-          ),
+          if (widget.controller.isWin())
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Text("You win!"),
+                const SizedBox(width: 10),
+                OutlinedButton(
+                  onPressed: () {},
+                  child: const Text("Retry"),
+                ),
+              ],
+            ),
         ],
       ),
     );

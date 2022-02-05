@@ -19,8 +19,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: SlidePuzzleView(
-        controller:
-            SlidePuzzleController(SlidePuzzleService(SlidePuzzleRepository())),
+        controller: SlidePuzzleController(
+            SlidePuzzleService(SlidePuzzleRepository.number())),
       ),
     );
   }

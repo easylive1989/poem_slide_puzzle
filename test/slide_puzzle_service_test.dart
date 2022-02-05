@@ -97,7 +97,7 @@ void move(String number) {
 
 void givenPuzzle(List<String> puzzle) {
   mockSlidePuzzleRepository = MockSlidePuzzleRepository();
-  when(() => mockSlidePuzzleRepository.get()).thenReturn(puzzle);
+  when(() => mockSlidePuzzleRepository.getPuzzle()).thenReturn(puzzle);
   slidePuzzleService = SlidePuzzleService(mockSlidePuzzleRepository);
 }
 
