@@ -1,3 +1,5 @@
+import 'dart:math';
+
 class SlidePuzzleRepository {
   List<String> _puzzle = [
     "1",
@@ -15,8 +17,9 @@ class SlidePuzzleRepository {
     "13",
     "14",
     "15",
-    ""
-  ];
+  ]
+    ..shuffle(Random())
+    ..add("");
 
   List<String> get() {
     return _puzzle;
