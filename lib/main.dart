@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:poem_slide_puzzle/slide_puzzle_controller.dart';
+import 'package:poem_slide_puzzle/slide_puzzle_repository.dart';
 import 'package:poem_slide_puzzle/slide_puzzle_service.dart';
 import 'package:poem_slide_puzzle/slide_puzzle_view.dart';
 
@@ -18,24 +19,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: SlidePuzzleView(
-        controller: SlidePuzzleController(SlidePuzzleService([
-          "1",
-          "2",
-          "3",
-          "4",
-          "5",
-          "6",
-          "7",
-          "8",
-          "9",
-          "10",
-          "11",
-          "12",
-          "13",
-          "14",
-          "15",
-          ""
-        ])),
+        controller:
+            SlidePuzzleController(SlidePuzzleService(SlidePuzzleRepository())),
       ),
     );
   }

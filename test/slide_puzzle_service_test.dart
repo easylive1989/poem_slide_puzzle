@@ -1,8 +1,10 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mocktail/mocktail.dart';
+import 'package:poem_slide_puzzle/slide_puzzle_repository.dart';
 import 'package:poem_slide_puzzle/slide_puzzle_service.dart';
 
 late SlidePuzzleService slidePuzzleService;
-
+late MockSlidePuzzleRepository mockSlidePuzzleRepository;
 main() {
   test("no way to move", () {
     givenPuzzle(["1", "2", "3", "4", "5", "6", "7", ""]);
@@ -94,5 +96,9 @@ void move(String number) {
 }
 
 void givenPuzzle(List<String> puzzle) {
-  slidePuzzleService = SlidePuzzleService(puzzle);
+  mockSlidePuzzleRepository = MockSlidePuzzleRepository();
+  when(() => mockSlidePuzzleRepository.get()).thenReturn(puzzle);
+  slidePuzzleService = SlidePuzzleService(mockSlidePuzzleRepository);
 }
+
+class MockSlidePuzzleRepository extends Mock implements SlidePuzzleRepository {}

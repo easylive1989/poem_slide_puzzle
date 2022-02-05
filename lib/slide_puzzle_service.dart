@@ -1,12 +1,15 @@
+import 'package:poem_slide_puzzle/slide_puzzle_repository.dart';
+
 class SlidePuzzleService {
-  final List<String> _puzzle;
+  final SlidePuzzleRepository _slidePuzzleRepository;
 
-  List<String> get puzzle => _puzzle;
+  List<String> get puzzle => _slidePuzzleRepository.get();
 
-  SlidePuzzleService(List<String> puzzle) : _puzzle = puzzle;
+  SlidePuzzleService(SlidePuzzleRepository slidePuzzleRepository)
+      : _slidePuzzleRepository = slidePuzzleRepository;
 
   void move(String number) {
-    var index = _puzzle.indexOf(number);
+    var index = puzzle.indexOf(number);
 
     _moveRightWhenMovable(index);
 
@@ -38,17 +41,17 @@ class SlidePuzzleService {
   }
 
   void _swapWhenMovable(int targetIndex, int index) {
-    if (targetIndex < _puzzle.length &&
+    if (targetIndex < puzzle.length &&
         targetIndex >= 0 &&
-        _puzzle[targetIndex] == "") {
-      _swap(targetIndex, index);
+        puzzle[targetIndex] == "") {
+      _swap(puzzle, targetIndex, index);
     }
   }
 
-  void _swap(int aIndex, int bIndex) {
-    String temp = _puzzle[aIndex];
-    _puzzle[aIndex] = _puzzle[bIndex];
-    _puzzle[bIndex] = temp;
+  void _swap(List<String> puzzle, int aIndex, int bIndex) {
+    String temp = puzzle[aIndex];
+    puzzle[aIndex] = puzzle[bIndex];
+    puzzle[bIndex] = temp;
   }
 
   int _top(int index) => index - 4;
