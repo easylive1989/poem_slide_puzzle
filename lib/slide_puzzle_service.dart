@@ -7,30 +7,41 @@ class SlidePuzzleService {
 
   void move(String number) {
     var index = _puzzle.indexOf(number);
-    var rowIndex = index ~/ 4;
-    var columnIndex = index % 4;
-    var rightIndex = _right(rowIndex, columnIndex);
-    var leftIndex = _left(rowIndex, columnIndex);
-    var bottomIndex = _bottom(rowIndex, columnIndex);
-    var topIndex = _top(rowIndex, columnIndex);
 
-    if (rightIndex < _puzzle.length &&
-        rightIndex >= 0 &&
-        _puzzle[rightIndex] == "") {
-      _swap(rightIndex, index);
-    }
-    if (leftIndex < _puzzle.length &&
-        leftIndex >= 0 &&
-        _puzzle[leftIndex] == "") {
-      _swap(leftIndex, index);
-    }
-    if (bottomIndex < _puzzle.length &&
-        bottomIndex >= 0 &&
-        _puzzle[bottomIndex] == "") {
-      _swap(bottomIndex, index);
-    }
-    if (topIndex < _puzzle.length && topIndex >= 0 && _puzzle[topIndex] == "") {
-      _swap(topIndex, index);
+    _moveRightWhenMovable(index);
+
+    _moveLeftWhenMovable(index);
+
+    _moveBottomWhenMovable(index);
+
+    _moveTopWhenMovable(index);
+  }
+
+  void _moveTopWhenMovable(int index) {
+    var topIndex = _top(index);
+    _swapWhenMovable(topIndex, index);
+  }
+
+  void _moveBottomWhenMovable(int index) {
+    var bottomIndex = _bottom(index);
+    _swapWhenMovable(bottomIndex, index);
+  }
+
+  void _moveLeftWhenMovable(int index) {
+    var leftIndex = _left(index);
+    _swapWhenMovable(leftIndex, index);
+  }
+
+  void _moveRightWhenMovable(int index) {
+    var rightIndex = _right(index);
+    _swapWhenMovable(rightIndex, index);
+  }
+
+  void _swapWhenMovable(int targetIndex, int index) {
+    if (targetIndex < _puzzle.length &&
+        targetIndex >= 0 &&
+        _puzzle[targetIndex] == "") {
+      _swap(targetIndex, index);
     }
   }
 
@@ -40,12 +51,11 @@ class SlidePuzzleService {
     _puzzle[bIndex] = temp;
   }
 
-  int _top(int rowIndex, int columnIndex) => (rowIndex - 1) * 4 + columnIndex;
+  int _top(int index) => index - 4;
 
-  int _bottom(int rowIndex, int columnIndex) =>
-      (rowIndex + 1) * 4 + columnIndex;
+  int _bottom(int index) => index + 4;
 
-  int _left(int rowIndex, int columnIndex) => rowIndex * 4 + columnIndex - 1;
+  int _left(int index) => index - 1;
 
-  int _right(int rowIndex, int columnIndex) => rowIndex * 4 + columnIndex + 1;
+  int _right(int index) => index + 1;
 }
